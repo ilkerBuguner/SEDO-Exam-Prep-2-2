@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Restore dependencies') {
             when {
-                anyOf {
-                    branch 'main'
+                expression {
+                    return env.BRANCH_NAME == 'origin/main'
                 }
             }
             steps {
@@ -14,8 +14,8 @@ pipeline {
         }
         stage('Build the app') {
             when {
-                anyOf {
-                    branch 'main'
+                expression {
+                    return env.BRANCH_NAME == 'origin/main'
                 }
             }
             steps {
@@ -24,8 +24,8 @@ pipeline {
         }
         stage('Run the tests') {
             when {
-                anyOf {
-                    branch 'main'
+                expression {
+                    return env.BRANCH_NAME == 'origin/main'
                 }
             }
             steps {
